@@ -366,7 +366,7 @@ IaaS 환경의 Web Service
 
    /etc/httpd/conf/http/conf
 
-  $ sudo cat -n /etc/httpd/conf/httpd.conf | grep DocumentRoot DirectoryIndex
+  $ sudo cat -n ( line 번호 출력 ) /etc/httpd/conf/httpd.conf | grep DocumentRoot DirectoryIndex
 
   119 DocumentRoot "/var/www/html"
 
@@ -390,21 +390,22 @@ IaaS 환경의 Web Service
 
    <?php
 
-   ​				phpinfo();
+   ​				phpinfo();             #( ) : 함수 표시 
 
    ?>
 
    php : 서버가 쓰는 용어
 
+웹앱 만드는 이유 : 홈페이지 만들기위해,
 
+웹 앱은 홈페이지 서비스 목적이므로 visual studio 설치시 쉽게 만들고 업로드 및 업데이팅이 쉽다. ( 무료 ) // .net, c, java 등 모든 언어 개발이 가능함. // 호환성이 좋다. 팀작업 수행이 가능함. 
 
+**slot** : production 환경에서 ( 바로바로 서비스하는 환경  ) 소스 코드를 clone 해서 staging 환경에서 수정해서 swap 하여 업로드시킴 ( 일반적, 정기적으로 야간상 정비함 ) // ex) 옥션 정기 점검시간 내 영업중지 상황 을 slot 을 통해 피해를 방지할수 있다. 
 
-
-
-
-- Software Difine or Docker - 
+- Software Difine Network or Docker - IP가 유동성있게 변환 되고 이를 처리하는 게 7.0 방화벽
+- ip table : 정적이므로 위의 것 지원 불가  : 서비스를 중지했다가 다시해야함 
 - firewalld - 네트워크가 동적으로 바뀔때 
-- firewall-cmd : 
+- firewall-cmd : 방화벽 허용 
 
 인바운드룰 : 서버로 들어가는 패킷을 컨트롤하는것 
 
@@ -416,9 +417,9 @@ destination = server
 
 21번으로 들어오는 포트를 allow (허용) 해준다.
 
- 
+ NSG ( Network Security Group ) : Azure 방화벽 
 
-<https://www.microsoft.com/en-us/learning/certification-overview.aspx> 
+https://www.microsoft.com/en-us/learning/certification-overview.aspx> 
 
 associated / expert certification (자격증 시험)
 
@@ -426,5 +427,220 @@ associated / expert certification (자격증 시험)
 
 firewall setting - peering/ VM setting / **AZ-103 Test is required** = Silver = 5 persons / Gold Partner = 10 persons => 기사 자격증 // 유효기간 3년
 
-* SLOT 환경 = 테스트 환경
-* Production 환경 - 
+* SLOT 환경 = 테스트 환경 (수정)
+* Production 환경 - 실제 환경
+* swap : slot 환경이 production 환경으로 적용 (updatating)
+* <=> 서비스 차단 과는 다르다.  : 실시간으로 업데이트하는 것으로 사용자의 끊김현상업이 하는것
+
+
+
+Load balancer - TCP / UDP .Port L7 : **L4**에서 처리 / region 내 처리 
+
+Traffic Manager( ) - DNS or Region 국가 / 지역 간 부하분담처리 역할이 가능함. L7에서 처리한다. 
+
+: 데이터 센터간 부하분담처리
+
+DNS : L4 
+
+TCP/UDP
+
+---
+
+# Review
+
+
+
+웹서버 - apache 제일대중
+
+IIS / Apache 
+
+os ( window / linux )
+
+Azure Web App - PaaS
+
+OS - IaaS
+
+Scale out : 수평확장
+
+Scale in : 
+
+Serverless - 밑단에 있는 VM( 용량 크다, 용량 => 과금단위. 이용금액 증가 ) 이 필요없다 - VM=hardware, Docker 이용해 신축성을 이용해 빠르게 / 증 감 한다. ( 용량이 적다 )
+
+위에서 ( IaaS ) 환경에서 바로 확장 축소가 이뤄짐
+
+
+
+Web server 밑단에 OS 존재, 웹브라우저는 웹서버 밑단에 클라이언트 프로그램, 
+
+FTP서버에 있는 클라이언트 프로그램: Fileziller
+
+메일 프로그램 : Outlook
+
+sql 서버에 접근하기 위한 클라이언트 관리 엔진 : MSSL
+
+Web server : 80번 포트
+
+웹서버에서 세팅된 홈디렉토리로 파일만 접근가능, 해당 서버에
+
+홈페이지 파일을 클라이언트에게 전송시킴
+
+처음 접속시 클라이언트에게 전송시키는 파일 : Default Document
+
+홈페이지 구성은 디폴트 document를  전송, 전부다 링크로 구성되어 있어 해당 링크 클릭시, 웹서버에게 그 문서를 요청하는 작업
+
+웹사이트 자체는 기본문서에서 부 홈 디렉토리와 하위 폴더 자체에 사이트를 걸어 보내주는것 
+
+
+
+# 10979 Module 8 & 20533 Module
+
+* **Active Directory** 
+
+ADDS : Directory Service // DS에서 ADDS 설치 join 을시 켜줘야하고 GPO 사용 / 
+
+-  Directory( 계정, 그룹 = object ) Service, X.500 ( 디렉토리 서비스 표준 / 어려운 사용법 )
+
+: 디렉토리 (네트워크 에 대한 정보 저장), 공유에서 서비스함
+
+- MS의 Directory ( Directory service 의 microsoft virsion ) // IBM SUN 과같은 벤더들의 언어는 복잡하고 어려워 MS가 쉽게 만든 서비스 
+- 중앙화된 보안 관리
+- 중앙화된 관리 ( GPO 를 통해 관리 )
+
+- **Domain** ( ms 환경내에서 도메인 표시는 세모 표시. ) // 도메인환경
+
+= 각자 각자 컴
+
+= 보안의 논리적인 Boundary ( 범위 )
+
+= Domain 환경을 구성하기위해 DC ( Domain Controller ) : 도메인의 보안 관리 시스템 (Active Directory 설치)
+
+= 중앙화된 관리, ( 중앙의 DC에서 처리함 / 계정을 DC에 한번만 만들어주면 되고 네트워크 내 컴퓨터들이 공유해서 사용함 / 별도의 인증업싱 바로바로 사용이 가능함 )
+
+= SSO (Single Sign On)
+
+- **WorkGroup  (작업그룹)**
+
+= 각자 시스템이 보안을 관리. ( 각자 컴퓨터에서 ip / pw 생성 (=인증) => 토큰생성 = User's SID )
+
+= 자신의 시스템에서 인증
+
+= 기업의 시스템(pc) 이 20대 미만 일시, 소규모 환경 
+
+= 자신의 시스템의 SAM 인증 ( C:\Windows\System32\config )
+
+
+
+* **SID ( Security ID )**
+
+- 사용자 계정, 그룹, 컴퓨터 계정
+
+- Admisistrator <=> **숫자로 된 고유번호** (컴퓨터가 (os) 사용자 식별하는 번호)
+- folder or file  에는 보안이 할당 되 있으므로 어떤 사용자가 해당 폴더 파일에 접근할시 보안 할당자를 확인하여 권리 부여 권리를 확인한다. 
+
+ex) A com 에서 B com 접근시, B com 의 file or folder 의 id / pw 를 알아야한다. 
+
+: 클라이언트가 있고 회사 com / server 10대 존재시, 매번 각 com 접근시 매번 ID/PW 인증을 받아야한다. 한 user 가 10대의 계정정보를 알아야할시 해당 10대 server 가 같은 id를 사용한다. 
+
+* ADDS / CS / LDS / RMS / FS 
+
+ADDS가 가장 기본. 순서대로 구현됨
+
+5가지 서비스로 분할되어 있다.
+
+AD CS - 인증서 배포 서비스 
+
+AD LDS - AD의 객체속성의 일부를 가져다주는 서비스 ( AD 의 간략한 정보 )
+
+AD RMS - 권한 관리 서버 Right Management Services
+
+AD FS (Federation service) - 도메인과 도메인 사이 Single Sign role
+
+=> 원청 & 하청 회사의 도메인 ( 서버 접근시 )의 보안단위가 다르므로 상대 해방 회사의 id&pw가 필요하다 하지만 FS 맺어놓을시 자기회사 인증을 통해 상대방 server 에 access 가능
+
+AD DS : AD컨트롤의 모든 정보를 담고 있는 것, 이가 잇어야 나머지 하위개념 서비스 작동이 가능한 BASE Service 이다. 
+
+Azure 사용시, 서비스 사용 접근시, 인증을 받아야하므로 AD계정이 필요하다. 관리자 가 azure와 FS 협정을 통해 AD계정이 없더라도 서비스 사용이 가능.  
+
+
+
+도메인 - 물리적인 각각의 컴퓨터를  하나의 보안단위로 그룹핑하는 것 / DC에서 중앙화된 관리로 수많은 Server 관리
+
+ex) 도메인환경구성을 위해 중앙에서 DC가 필요 / 고정 IP , 도메인서비스 필요 ( Mulitcampus.com )
+
+GPO를 통해 관리
+
+: DC에서 상승 // 도메인에 에있는 PC 관리, Control, 정책이 적용된다
+
+GPO 통해 중앙에서 검출
+
+OU( Organization Unit ) : 
+
+도메인간 trust 를 맺어 확장해서 나감 // 확장된 전체 : forest 
+
+DC : 2대 이상 가져가나
+
+=> 모든 컴퓨터의 보안관리
+
+컴퓨터가 도메인에 
+
+AD - Azure service를 사용자 계정 만들어 서비스를 이용가능케끔 서비스를 제공함. 
+
+회사내에 어떤 프로그램을 사용자가 사용할수 있도록 권한을 양도.
+
+azure - 2016 
+
+계정을 바로 만들어서 바로 쓸수 있다 . 밑단  VM은 ms에서 관리한다
+
+하나의 계정에서 여러 도메인을 만들수 있다. boundary (보안 boundary) = tenent 
+
+Multitenent 보안 boundary
+
+AAD - MS에서 관리하는 Paas 시스템 // OU, CO 사용하지 않는다. 
+
+Azure portal // AD 
+
+RBEC
+
+
+
+ ipconfig /all
+
+10.30.0.4 
+
+​	* IAM 리소스 권한 부여 
+
+Authentication (인증) : ID와 Password를 확인
+
+Authorization (허가) : Resource access 권한 
+
+Subscription > Resource Group > Resource 
+
+= > 서비스크립션 레벨에서 권한을 부여하면 , 하위 리소스그룹에 권한 상속이 이루어짐 
+
+=> 구독 기능이 있어야 권한이 있다. 
+
+tenent = domain
+
+
+
+on-premise일 때 - id + password / 
+
+ / AAD
+
+Domain 환경구성
+
+1. DC 구성
+
+   a. 고정 IP
+
+   b. AD DS Role설치
+
+   c. DC Promotion (DC&DNS 함께 설치)
+
+   ​	multicampus.com (도메인의 도메인이름)
+
+   SERVER1을 도메인안에 넣어준다
+
+   
+
+2. 
