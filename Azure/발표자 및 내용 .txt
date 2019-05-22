@@ -1,0 +1,39 @@
+발표
+
+1. Cloud 기초 ( Cloud 개념 및 잇점 / Cloud 종류 / Cloud Type ) , 실습 :  Azure Web App
+  황지운, 명호준
+2. PowerShell/Azure CLI/CloudShell
+ 	조윤기, 
+3. Azure Virtual Machine
+	Linux VM		<== 김완상
+	Windows VM	<== 정윤선
+4. Azure Virtual Network (Vnet/ NSG)
+	나한결, 권오혁
+5. Azure Storage
+	강태형, 김영인
+6. Azure SQL
+	박정우, 차호진
+7. Azure Web App 
+	김선영
+8. Azure DNS
+	김찬미, 박여진
+9. Azure LoadBalancer
+	심재헌, 이규진
+10. TrapicManager
+	김도영,
+11. AAD
+	오경희, 김재정
+12. VPN (P2S, S2S, Vnet-to-Vnet) - 이론 설명, Peering(데모)
+	문규철, 최기범
+13. Azure Container
+	박지영, 임동욱
+
+
+총 10분 
+   이론 : PPT 5분 , PPT 제작 ( 소개 및 개념, 이론 ,  데모 화면 PPT 캡쳐 후 설명 ) , 10페이지 ~ 20 페이지
+   데모 : 2분
+   질의 응답 3분  
+
+
+
+

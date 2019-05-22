@@ -1,0 +1,53 @@
+8일차 - Azure AD (AAD)
+	10979 Module 8, 20533 Module 9
+
+Active Directory
+	- Directory Service , X.500 (디렉토리 서비스 표준)
+	- MS 의 Directory 
+	- 중앙화된 보안 관리. 
+	- 중앙화된 관리 (GPO)
+
+ -Domain 
+	- 보안의 논리적인 범위
+	- DC (Domain Controller) : 도메인의 보안 관리하는 시스템( Active Directory 설치)
+	- 중앙화된 관리,
+	- SSO ( Single Sign On)
+
+ -WorkGroup
+	- 각자 시스템이 보안을 관리.
+	- 자신의 시스템에서 인증
+	- 기업의 시스템이 20대 미만(소규모)
+	- 자신의 시스템의 SAM 인증 (C:\Windows\System32\config)
+
+
+SID ( Security ID) : 
+	- 사용자 계정, 그룹, 컴퓨터 계정
+	- Administrator    <==> 숫자로된 고유 번호 
+	
+Domain 환경 구성 
+1. DC 구성
+   a. 고정 IP
+   b. AD DS Role 설치 
+   c. DC Promotion
+	multicampus.com
+	
+Authentication (인증) : ID와 Password 를 확인 
+Authorization (허가) :  리소스 접근 권한 
+	서브크립션 > 리소스 그룹 > 리소스
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
