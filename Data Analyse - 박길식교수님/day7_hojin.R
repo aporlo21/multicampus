@@ -37,23 +37,23 @@ p<-ggplot(data=mpg, aes(x=displ,
 geom_point()
 ggplotly(p) #ggplotly: ggplot
 str(diamonds)
-p<-ggplot(data=diamonds, aes(x fi=cut,ll=clarity)) +
+p<-ggplot(data=diamonds, aes(x=cut, fill=clarity))+
 geom_bar(position = "dodge")
-ggplotly(p)         
+ggplotly(p)         #ggplot2::ggplot() object를 plotly object로 
 
 #시계열그래프(dygraphs)
 install.packages("dygraphs")
-library(dygraphs)
+library(dygraphs) # 자바 라이브러리를 이용한 대화형 시계열도면에 대한 r인터페이스
 str(economics)
-tail(economics)
+tail(economics) #object의 첫째, 마지막 파트를 반환한다.
 
 
 library(xts)
 eco<-xts(economics$unemploy, 
-         order.by = economics$date)
+         order.by = economics$date) # 데이터 정렬
 head(eco)
-dygraph(eco) %>% 
-  dyRangeSelector()
+dygraph(eco) %>% # 시계열 데이터에 대한 대화형 플롯
+  dyRangeSelector() # 대화형 범위 선택 및 zooming
 #저축률과 실업자수 간의 상관관계
 #여러개의 값표시
 eco_a<-xts(economics$psavert,
@@ -62,13 +62,13 @@ eco_b<-xts(economics$unemploy/1000,
       order.by = economics$date)
 eco_a #저축률
 eco_b #실업자수
-eco2<-cbind(eco_a, eco_b)
+eco2<-cbind(eco_a, eco_b) #cbind : r object를 행이나 열에 의해 합한다. 
 str(eco2)
 
-colnames(eco2)<-c("psavert", "unemploy")
+colnames(eco2)<-c("psavert", "unemploy") #행렬 유사객체의 열이름설정 # c : value값을 vector or list에 합
 head(eco2)
 
-dygraph(eco2) %>% 
+dygraph(eco2) %>% #시간의 흐름 데이터를 위한 대화형 상자 
   dyRangeSelector() #주식예측그래프 와 유사(변화추이)
 
 #학습정리!
@@ -214,7 +214,6 @@ class(x) #class함수 : type 찍어보기
 x #$stats- [,1][1,]=>matrix구조 
 #1번 열만 출력
 x$stats[,1] #극단치 // 범위 넘으면 이상치
-#9ㅈㅇㅇㅇㅇ
 x$stats[,1][2] #원하는 데이터 추출 
 
 #text mining
@@ -488,6 +487,74 @@ table(unlist(myings))
 #연습문제
 
 #1.mysentences에서 stat~ 로 시작되는 표현 추출
+
+mypattern<-gregexpr("(stat)[[:alpha:]]+",tolower(mysentences))
+regmatches(tolower(mysentences),mypattern) #
+#대소문자 구분
+mypattern<-gregexpr("(stat)[[:upper:]]+",tolower(mysentences))
+myuppers<-regmatches(tolower(mysentences),mypattern) #
+myuppers
+
+mypattern<-gregexpr("[[:lower:]]+",tolower(mysentences))
+my.lowers<-regmatches(tolower(mysentences),mypattern) #
+my.lowers
+table(unlist(my.lowers))
+
+#대소문자 구분 없이 가장 많이 등장한 문자
+mypattern<-gregexpr("[[:lower:]]",tolower(mysentences))
+my.alphas<-regmatches(tolower(mysentences),mypattern) #
+my.lowers
+mytable<-table(unlist(my.alphas))
+
+max(mytable) #71
+#a 출력
+mytable[mytable==max(mytable)]
+length(mytable) #22개 알파벳 문자 사용
+sum(mytable)
+
+ggplot(pressure, aes(x=temperature, y=pressure))+
+  geom_point(size=2,color='red')+ # 포인트가 찍힘
+  geom_line(size=2,color='deepskyblue') # 선으로 이어짐
+
+ggplot(pressure, aes(x=temperature, y=pressure))+
+  geom_line(size=2,color='deepskyblue')+ # 선으로 이어짐
+  geom_point(size=2,color='red')+ # 포인트가 찍힘
+  ggtitle('pressure data')+
+  xlab('Temp')+
+  ylab('Prs')+
+  theme_bw()
+  #theme_gray()
+  #theme_classics()
+  #theme_bw()
+
+
+#ggplot의 bar그래프 출력 방식
+#1. x축만 지정 => 빈도
+#2. x,y축 모두 지정
+ggplot(diamonds, aes(cut))+
+  geom_bar() #종류별 빈도 출력
+  
+ggplot(diamonds, aes(cut))+
+  geom_bar(stat='count') #종류별 빈도 출력 #() : default값은 count로 되어있음 (빈도)
+
+#x,y축 모두 지정하는 방법
+sleep
+ggplot(sleep, aes(ID, extra, fill=group))+ #aes: 그래프의 틀을 정해주는 함수 #fill_group 색상추가 & 범례구분
+  geom_bar(stat='identity', position='dodge') #그래프 표현방식 정해주는 함수 #position:색상에 따른 구분 명확
+#stat 어떤통계치를 바탕으로 graph그릴래 함수 #'extra축 데이터 바탕으로 그래프 그리겠다.
+# id 1에 해당하는 extra data - 0.7 + 0.9 => 출력
+ggplot(diamonds, aes(color, fill=cut))+ #cut column에 대한 누적 막대그래프 출력표시
+  geom_bar(position='fill')+ # 청록 녹색과 같은 색상구분 여렵 // 비율비교 어렵다. => position='fill' 상대적 비율 확인 가능케함
+#=> 다이아몬드 컷팅에 따른 색상비교그래프 // 노란색 비율이 가장 높다.(결론)
+  coord_flip()
+
+class(mytable)
+mydata<-data.frame(mytable)
+mydata
+ggplot(mydata, aes(x=Var1, y=Freq, fill=Var1))+ # fill : 범례자동생성부분이 좋지않다.
+  geom_bar(stat='identity')+ # x축만 지정해주는 경우 geom_bar 를 사용
+  guides(fill=FALSE) # 범례부분 삭제
+
 
 #2.가장 많이 사용된 단어?
 
