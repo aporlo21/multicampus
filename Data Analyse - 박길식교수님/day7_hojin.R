@@ -109,6 +109,7 @@ exam[exam$math>=50,c("english","science")]
 
 #수학>=50, 영어>=80인 학생에 대해 각 반의 전과목 총 평균 출력
 #dplyr를 사용 (패키지)
+library(dplyr)
 exam %>% 
   filter(math>=50 & english>=80) %>% #두조건을 만족하는 데이터 출력
   mutate(tot=(math+english+science)/3) %>% 
