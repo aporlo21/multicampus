@@ -110,9 +110,9 @@ getwd()
 
 install.packages("readxl")
 library(readxl)
-View("Data/excel_exam.xlsx")
 df<-read_excel("Data/excel_exam.xlsx")
 df
+View(df)
 mean(df$science)
 
 df2<-read_excel("Data/excel_exam_novar.xlsx",col_names = F)
@@ -149,12 +149,13 @@ tail(exam)
 View(exam)
 str(exam)
 
-dim(exam)
+dim(exam)# За, ї­
 
 summary(exam)
 
 a<-c(1,2,3,4)
 median(a)
+
 
 class(mpg)
 head(mpg)
