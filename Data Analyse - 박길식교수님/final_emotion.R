@@ -1,7 +1,7 @@
 library(rvest)
 
 #----------------------------------------------------------------
-# asiana air
+# asiana air_title
 
 allReviews_A<-c() #초기화
 
@@ -21,7 +21,7 @@ print(reviews_A)
 write.table(allReviews_A,"review_A.txt")
 
 #--------------------------------------------------------------
-# korean air
+# korean air_title
 
 allReviews_K<-c() #초기화
 
@@ -42,7 +42,7 @@ write.table(allReviews_K,"review_K.txt")
 
 #-----------------------------------------------
 
-# asiana air
+# asiana air_main
 
 allReviews_A_1<-c() #초기화
 
@@ -62,7 +62,7 @@ print(reviews_A_1)
 write.table(allReviews_A_1,"review_A_1.txt")
 
 #--------------------------------------------------------------
-# korean air
+# korean air_main
 
 allReviews_K_1<-c() #초기화
 
@@ -83,56 +83,62 @@ write.table(allReviews_K_1,"review_K_1.txt")
 
 #-------------------------------------------------------
 
-library(dplyr)
-library(stringr)
+library(dplyr) #데이터 처리
+library(stringr) #문자열 다루기
 library(tm) #tm_map : 숫자 제거
 
-a<-tolower(allReviews_A)
+a<-tolower(allReviews_A) #소문자로 통일
 a
 b<-str_replace_all(a, "[[:punct:]]{1,}", "") #단어_특수문자(#@$%^...)_단어
 b
-c<-str_split(b, " ")
+c<-str_split(b, " ") #공백기준 split
 c
 
-table(unlist(c))
-d<-as.data.frame(table(unlist(c)))
+table(unlist(c)) #list 해제 
+d<-as.data.frame(table(unlist(c))) #data frame 형식으로 재설정
 d
 
 library(tidytext) #tidytext형태로 데이터를 구성
-e<-as.data.frame(get_sentiments("afinn"))
+e<-as.data.frame(get_sentiments("afinn")) #
 e
 
-d<-rename(d, word=Var1)
-f<-inner_join(d, e, by="word")
+d<-rename(d, word=Var1) #df 변수명 변경
+f<-inner_join(d, e, by="word") #d & e df를 inner join 교차시킴
 f
-
-g1<-f %>%
+#-----------------------------------------------
+g1<-f %>% #빈도수에 따른 정렬
   arrange(desc(Freq)) %>%
-  head(11)
+  head(5)
 
-g2<-f %>% 
+g2<-f %>% #freq*score Head정렬
   group_by(word) %>% 
   summarise(imp=Freq*score) %>% 
   arrange(desc(imp)) %>% 
-  head(11)
+  mutate(group="good") %>% 
+  head(5)
+g2
 
-g3<-f %>% 
+g3<-f %>%  #freq*score Tail정렬
   group_by(word) %>% 
   summarise(imp=Freq*score) %>% 
   arrange(desc(imp)) %>% 
-  tail(11)
+  mutate(group="bad") %>% 
+  tail(5)
+g3
+
+g4<-rbind(g2,g3)
 
 library(ggplot2)
 ggplot(data=g1,aes(x=word,y=Freq)) + geom_col()
 ggplot(data=g2,aes(x=word,y=imp)) + geom_col()
 ggplot(data=g3,aes(x=word,y=imp)) + geom_col()
-
+ggplot(data=g4,aes(x=word,y=imp,fill=group)) + geom_col()
 
 #------------------------------------------
 
 a1<-tolower(allReviews_K)
 a1
-b1<-str_replace_all(a1, "[[:punct:]]", "") #단어_특수문자(#@$%^...)_단어
+b1<-str_replace_all(a1, "[[:punct:]]{1,}", "") #단어_특수문자(#@$%^...)_단어
 b1
 c1<-str_split(b1, " ")
 c1
@@ -149,50 +155,38 @@ d1<-rename(d1, word=Var1)
 f1<-inner_join(d1, e1, by="word")
 f1
 
-table
-
 g_1<-f1 %>%
   arrange(desc(Freq)) %>%
-  head(11)
+  head(5)
 
 g_2<-f1 %>% 
   group_by(word) %>% 
   summarise(imp=Freq*score) %>% 
-  arrange(desc(imp)) %>% 
+  arrange(desc(imp)) %>%
+  mutate(group="good") %>% 
   head(5)
+
 
 g_3<-f1 %>% 
   group_by(word) %>% 
   summarise(imp=Freq*score) %>% 
-  arrange(desc(imp)) %>% 
+  arrange(desc(imp)) %>%
+  mutate(group="bad") %>% 
   tail(5)
 
-g_4<-f1 %>% 
-  group_by(word) %>% 
-  summarise(imp=Freq*score) %>% 
-  arrange(desc(imp))
-
-
-g_5<-rbind(g_2,g_3)
-g_5
+g_4<-rbind(g_2,g_3)
+g_4
 
 library(ggplot2)
 library(dplyr)
-library(ggplot2)
 library(scales)
 library(RColorBrewer)
-
-
 
 ggplot(data=g_1,aes(x=word,y=Freq)) + geom_col()
 ggplot(data=g_2,aes(x=word,y=imp)) + geom_col()
 ggplot(data=g_3,aes(x=word,y=imp)) + geom_col()
-ggplot(data=g_5,aes(x=word,y=imp)) + geom_col()
+ggplot(data=g_4,aes(x=word,y=imp,fill=group)) + geom_col()
 
-
-
-f1
-ggplot(data=f1, aes(word, freq, fill="#ffffff"))+geom_bar(stat='identity', position='g_2')
 
 #---------------------------------------------
 
@@ -202,7 +196,7 @@ library(tm) #tm_map : 숫자 제거
 
 a2<-tolower(allReviews_A_1)
 a2
-b2<-str_replace_all(a2, "[[:punct:]]", "") #단어_특수문자(#@$%^...)_단어
+b2<-str_replace_all(a2, "[[:punct:]]{1,}", "") #단어_특수문자(#@$%^...)_단어
 b2
 c2<-str_split(b2, " ")
 c2
@@ -221,32 +215,36 @@ f2
 
 g11<-f2 %>%
   arrange(desc(Freq)) %>%
-  head(11)
+  head(5)
 
 g22<-f2 %>% 
   group_by(word) %>% 
   summarise(imp=Freq*score) %>% 
   arrange(desc(imp)) %>% 
-  head(11)
+  mutate(group="good") %>% 
+  head(5)
 
 g33<-f2 %>% 
   group_by(word) %>% 
   summarise(imp=Freq*score) %>% 
   arrange(desc(imp)) %>% 
-  tail(11)
+  mutate(group="bad") %>% 
+  tail(5)
 
-library(ggplot2)
+g44<-rbind(g22,g33)
+
+
 ggplot(data=g11,aes(x=word,y=Freq)) + geom_col()
 ggplot(data=g22,aes(x=word,y=imp)) + geom_col()
 ggplot(data=g33,aes(x=word,y=imp)) + geom_col()
-
+ggplot(data=g44,aes(x=word,y=imp,fill=group)) + geom_col()
 
 
 #------------------------------------------------------------
 
 a3<-tolower(allReviews_K_1)
 a3
-b3<-str_replace_all(a3, "[[:punct:]]", "") #단어_특수문자(#@$%^...)_단어
+b3<-str_replace_all(a3, "[[:punct:]]{1,}", "") #단어_특수문자(#@$%^...)_단어
 b3
 c3<-str_split(b3, " ")
 table(unlist(c3))
@@ -265,21 +263,26 @@ f3
 
 g1_1<-f3 %>%
   arrange(desc(Freq)) %>%
-  head(11)
+  head(5)
 
 g2_2<-f3 %>% 
   group_by(word) %>% 
   summarise(imp=Freq*score) %>% 
   arrange(desc(imp)) %>% 
-  head(11)
+  mutate(group="good") %>% 
+  head(5)
 
 g3_3<-f3 %>% 
   group_by(word) %>% 
   summarise(imp=Freq*score) %>% 
   arrange(desc(imp)) %>% 
-  tail(11)
+  mutate(group="bad") %>% 
+  tail(5)
+
+g4_4<-rbind(g2_2,g3_3)
 
 library(ggplot2)
 ggplot(data=g1_1,aes(x=word,y=Freq)) + geom_col()
 ggplot(data=g2_2,aes(x=word,y=imp)) + geom_col()
 ggplot(data=g3_3,aes(x=word,y=imp)) + geom_col()
+ggplot(data=g4_4,aes(x=word,y=imp,fill=group)) + geom_col()
