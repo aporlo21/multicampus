@@ -193,6 +193,10 @@ mycorpus<-tm_map(mycorpus, content_transformer(tolower), stripWhitespace) # tran
 #불용어 사전 적용 -> 삭제
 mycorpus<-tm_map(mycorpus,removeWords,words=stopwords("SMART")) #stopwords : 
 #어근 동일화
+
+stopwords("SMART")
+
+
 mycorpus<-tm_map(mycorpus, stemDocument, language="en")
 # TF-IDF : corpus내에서 word가 문서
  ccscs
