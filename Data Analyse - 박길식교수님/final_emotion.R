@@ -106,26 +106,22 @@ d<-rename(d, word=Var1) #df 변수명 변경
 f<-inner_join(d, e, by="word") #d & e df를 inner join 교차시킴
 f
 #-----------------------------------------------
+# 시각화
 g1<-f %>% #빈도수에 따른 정렬
   arrange(desc(Freq)) %>%
   head(5)
-
 g2<-f %>% #freq*score Head정렬
   group_by(word) %>% 
   summarise(imp=Freq*score) %>% 
   arrange(desc(imp)) %>% 
   mutate(group="good") %>% 
   head(5)
-g2
-
 g3<-f %>%  #freq*score Tail정렬
   group_by(word) %>% 
   summarise(imp=Freq*score) %>% 
   arrange(desc(imp)) %>% 
   mutate(group="bad") %>% 
   tail(5)
-g3
-
 g4<-rbind(g2,g3)
 
 library(ggplot2)
