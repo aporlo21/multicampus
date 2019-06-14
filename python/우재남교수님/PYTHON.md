@@ -523,21 +523,21 @@ float : 부동소수점수 (소수점이하표현)
 
 순서형( sequence ) 에 속하는 string / list
 
-```
-> > > x = 'banana'
-> > > x[0]			# 0번 글자는?
+```python
+>>> x = 'banana'
+>>> x[0]			# 0번 글자는?
 
 'b'
 
-> > > x[2:4]		# 2번부터 4번 앞(3번)까지는?
+>>> x[2:4]		# 2번부터 4번 앞(3번)까지는?
 
 'na'
 
-> > > x[:3]		# 처음부터 3번 앞(2번)까지는?
+>>> x[:3]		# 처음부터 3번 앞(2번)까지는?
 
 'ban'
 
-> > > x[3:]		# 3번부터 끝까지는?
+>>> x[3:]		# 3번부터 끝까지는?
 
 'ana'
 ```
@@ -552,14 +552,14 @@ float : 부동소수점수 (소수점이하표현)
 
 - 목록
 
-```
-> > > prime = [2, 3, 7, 11]	# 2, 3, 7, 11을 원소로 갖는 목록
+```python
+>>> prime = [2, 3, 7, 11]	# 2, 3, 7, 11을 원소로 갖는 목록
 
 목록 prime을 만듦
 
-> > > prime.append( 5 )	# prime 에 원소 5를 추가
-> > >
-> > > prime
+>>> prime.append( 5 )	# prime 에 원소 5를 추가
+>>>
+>>> prime
 
 [2, 3, 7, 11, 5]
 ```
@@ -567,8 +567,8 @@ float : 부동소수점수 (소수점이하표현)
 sort 함수 사용시, 정렬을 간단히 할수 있다.
 
 ```
-> > > prime. sort()		# prime을 원소 크기 순으로 정렬
-> > > prime
+>>> prime. sort()		# prime을 원소 크기 순으로 정렬
+>>> prime
 [2, 3, 5, 7, 11]
 >>> del prime[4]		# prime의 4번 원소 삭제
 >>> prime
@@ -586,7 +586,7 @@ sort 함수 사용시, 정렬을 간단히 할수 있다.
 
 - 문자열을 목록으로 바꾸기
 
-```
+```python
 >>> characters = []				#비어있는 목록 생성
 >>> sentence = 'Be happy!'		
 >>> for char in sentence:
@@ -598,7 +598,7 @@ sort 함수 사용시, 정렬을 간단히 할수 있다.
 
 - 성적표
 
-```
+```python
 >>> chulsu = [90, 85, 70]
 >>> younghee = [88, 79, 92]
 >>> yong = [100, 100, 100]	
@@ -609,7 +609,7 @@ sort 함수 사용시, 정렬을 간단히 할수 있다.
 
 - 학생들의 성적 호출
 
-```
+```python
 >>> for scores in students:
 ... 	print(scores)
 ...
@@ -670,13 +670,13 @@ list와 비슷한 자료형
 
 - 튜플's 문법
 
-```
-> > > t = ('a','b','c') 	#튜플 생성시, 괄호 써도 되고 안써도 ok
+```python
+>>> t = ('a','b','c') 	#튜플 생성시, 괄호 써도 되고 안써도 ok
 
-> > > empty = ()			#원소없는 튜플시 괄호필수
+>>> empty = ()			#원소없는 튜플시 괄호필수
 
-> > > one = 5,				#원소 하나만 가진 튜플생성시, 원소뒤 콤마(,)
-> > > one 
+>>> one = 5,				#원소 하나만 가진 튜플생성시, 원소뒤 콤마(,)
+>>> one 
 (5,)
 >>> p = (1,2,3)				#튜플은 리스트와 달리 원소값 바꿀수 없다.
 >>> q = p[:1] + (5,) + p[2:]#문자열에서 했던것처럼 오려붙이는 방식 채택
@@ -700,7 +700,7 @@ list와 비슷한 자료형
 
 dictionary
 
-```
+```python
 >>> dic = {}	# dic이라는 이름으로 비어있는 사전을 만듬
 >>> dic['dictionary'] = '1. A reference book containing an ...'
 >>> dic['python'] = 'Any of various nonvenomous snake ...'
@@ -769,7 +769,7 @@ False
 
 ex) pc 2대, 프로그램 수행시간은 각 3분, 5분, 2분이라면, pc 1는 3분, 2분짜리 프로그램을 수행하고 다른 컴퓨터는 5분짜리 프로그램을 수행하면된다.
 
-```
+```python
 입력) computer : 2
 	 program : 3, 5, 2
 출력) pc 1 : 3, 2
@@ -778,7 +778,7 @@ ex) pc 2대, 프로그램 수행시간은 각 3분, 5분, 2분이라면, pc 1는
 
 컴퓨터가 여러 대가 프로그램을 나눠 수행한다면, 각각 컴퓨터에게 같은 양의 일을 줘서 같이 끝내는 것이 좋다. 예에서는 총 10분간 할일을 컴퓨터 두 대에게 나눠주는 것이므로 각각 5분씩 일을 할당시키면 된다.
 
-```
+```python
 해법1 )
 프로그램 총 수행시간을 구한다.
 총 수행시간을 컴퓨터 대수로 나누어 각각 컴퓨터의 평균 수행시간을 구한다. 
@@ -831,7 +831,7 @@ outlist는 [],[],[]와 같이 되고, sumout은 [0,0,0]이 됨.
 
 나중에 함수가 모두 실행되면, 결과값이 [[22], [15,3,2],[13,6]] 과 같이 담기고, 그 때 sumout은 [22,20,19]와 같이 됨
 
-```
+```python
 inlist.sort(reverse=Ture)
 ```
 
@@ -839,14 +839,14 @@ inlist.sort(reverse=Ture)
 
 reverse인자에 True를 지정함으로써 정렬이 역순(오름차순) 으로 이루어지도록한다
 
-```
+```python
 inlist.sort()
 inlist.reverse()
 ```
 
 각각의 빵을 바구니로 분배.
 
-```
+```python
 for bread in inlist:
 	lowbasket = sumout.index(min(sumout))
 	outlist[lowbasket.]append(bread)
@@ -865,7 +865,7 @@ for bread in inlist:
 
 모듈 : 프로그램의 꾸러미 // 남이 만든 부품을 가져다 쓰는 사용법
 
-```
+```python
 >>> import math		# math 모듈 불러오기
 >>> math.pi 		# math 모듈의 변수 pi 값은?
 >>> import calenda
@@ -889,7 +889,7 @@ from 모듈 import 변수 나 함수	 #모듈 내에서 필요한 것만 콕 찍
 
 => "모듈.변수" 의 형식 // 선호 why 덮어쓰다가 겹쳐버릴수 있다.
 
-```
+```python
 >>> from Tkinter import *
 >>> widget = Label(None, text='I love Python!')
 >>> Tkinter.widget.pack()
