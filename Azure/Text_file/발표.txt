@@ -1,0 +1,30 @@
+발표
+
+1. Cloud 기초 ( Cloud 개념 및 잇점 / Cloud 종류 / Cloud Type ) 
+2. PowerShell/Azure CLI/CloudShell
+3. Azure Virtual Machine
+	Linux VM
+	Windows VM
+4. Azure Virtual Network (Vnet/ NSG)
+5. Azure Storage
+6. Azure SQL
+7. Azure Web App 
+8. Azure DNS
+9. Azure LoadBalancer
+10. TrapicManager
+11. AAD
+12. VPN (P2S, S2S, Vnet-to-Vnet) - 이론 설명, Peering(데모)
+
+13. Azure Container
+
+
+
+
+총 10분 
+   이론 : PPT 5분 , PPT 제작 ( 소개 및 개념, 이론 ,  데모 화면 PPT 캡쳐 후 설명 ) , 10페이지 ~ 20 페이지
+   데모 : 2분
+   질의 응답 3분 , 
+
+
+
+

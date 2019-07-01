@@ -1,0 +1,79 @@
+7일차 - Azure Web APP
+	10979 Module 4, 20533 Module 5
+
+www.microsoft.com/learning
+
+
+IaaS 환경의 Web Service 
+	서버장비 구매, OS 설치, IIS 설치
+---------------------------------------------------------
+Windows Server 2016
+1. IIS(Internet Information Service) 설치 
+    - Web Server (TCP 80)
+	웹페이지를 Client에게 전송,
+
+    - FTP Server (TCP 21)
+
+Role vs Feature
+  Role - 서버 서비스 (16) , Web Server (IIS), 
+  Feature - 기능 (35)
+
+Web Server Home Directory 
+  C:\inetpub\wwwroot
+Default Document (기본 문서)
+   index.htm, index,html, default.htm, default.html, default.asp
+
+---------------------------------------------------------
+Linux (CentOS 7.6)
+1. APM ( Apache, PHP, MySQL(MariaDB))
+ $ sudo yum install httpd php php-mysql php-pod php-gd php-mbstring mariadb mariadb-server
+
+2. 서비스 자동 등록
+$ sudo systemctl enable httpd
+$ sudo systemctl enable mariadb
+
+3. 서비스 시작
+$ sudo systemctl start httpd
+$ sudo systemctl start mariadb
+
+4. 방화벽 시작
+$ sudo systemctl enable firewalld
+$ sudo systemctl start firewalld
+
+5. 방화벽 오픈
+$ sudo firewall-cmd --permanent --add-port=80/tcp
+$ sudo firewall-cmd --permanent --add-port=21/tcp
+$ sudo firewall-cmd --permanent --add-port=3306/tcp
+$ sudo firewall-cmd --reload
+$ sudo firewall-cmd --list-ports
+
+6. 웹서버 설정 파일 (httpd.conf) : /etc/httpd/conf/httpd.conf
+$ sudo find / -name httpd.conf
+/etc/httpd/conf/httpd.conf
+$ sudo cat -n /etc/httpd/conf/httpd.conf | grep DocumentRoot 
+119 DocumentRoot  "/var/www/html"
+$ sudo cat -n /etc/httpd/conf/httpd.conf | grep DirectoryIndex
+164 DirectoryIndex  index.html
+$ sudo vi /var/www/html/index.html
+Linux Web Server Test ~~~~
+
+7. PHP 작동 
+$ sudo vi /var/www/html/phpinfo.php
+<?php
+	phpinfo();
+?>
+
+Azure Web App
+
+Visual Studio code
+	https://visualstudio.microsoft.com/downloads/
+
+
+
+
+
+
+
+
+
+
