@@ -1,0 +1,69 @@
+# bigcon01 
+
+- label 
+  - user id 
+  - survival time
+  - spent money
+- activity
+  - day
+  - user id 
+  - char id
+  - server 
+  - playtime
+  - npc kill
+  - solo exp
+  - party exp
+  - quest exp
+  - boss monster
+  - death 
+  - revive
+  - private shop
+  - game money change
+  - enchant count
+- trade
+  - day
+  - time
+  - type
+  - server
+  - source user id
+  - source char id
+  - target user id
+  - target char id
+  - item type
+  - item amount
+  - item price
+- pledge
+  - day
+  - user id
+  - char id
+  - server
+  - pledge id
+  - play char cnt
+  - combat combat cnt
+  - pledge combat cnt
+  - random attacker cnt
+  - random defender cnt
+  - same pledge cnt
+  - tempt cnt 
+  - ete cnt
+  - combat play time
+  - non combat play time
+- payment
+  - day
+  - user id
+  - amount spent
+- combat
+  - day
+  - user id
+  - char id
+  - server
+  - class
+  - level
+  - pledge cnt
+  - random attacker cnt
+  - random defender cnt
+  - temp cnt
+  - same pledge cnt
+  - etc cnt
+  - num opponent
+- 

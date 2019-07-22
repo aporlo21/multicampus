@@ -45,5 +45,15 @@ plt.clf() : 생성그래프를 clear
 
 
 
+codec = encoding / decoding
+
+coder 를 사용해서 하는 작업을 Encoding 
+
+decoder를 사용해서 하는 작업을 Decoding 이라한다
+
+coder는 영상이나 음성의 아날로그적신호를 디지털신호로 바꿈 (압축)
+
+decoder는 coder에서 전환된 디지털 신호를 영상이나 음성으로 바꿔주는 역할(압축해제) 
+
 
 
