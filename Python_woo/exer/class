@@ -1,0 +1,8 @@
+class hojin:
+    def __init__(self,x,y):
+        pass
+    def name(self,a):
+        a = 25
+        print(a)
+    def age():
+        print('26')

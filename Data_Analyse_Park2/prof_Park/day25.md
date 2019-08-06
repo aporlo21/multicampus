@@ -4,7 +4,7 @@
 
 Boolean형태인 경우 True이면 1, False이면 0을 출력한다.
 
-
+## 
 
 `gcf()`로 현재 이미지 instance를 변수에 할당한 후, 이 instance로 `savefig()`를 불러야 합니다. draw_graph()만 다음같이 바꿔주세요
 
