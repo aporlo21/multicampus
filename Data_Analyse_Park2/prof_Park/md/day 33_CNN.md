@@ -251,3 +251,56 @@ Bidirectional Recurrent Neural Networks(BRNNs)을 이용하면, 이렇게 이전
    learned embeddings를 t-SNE를 활용해 나타낼 수 있다. 
    t-SNE는 데이터를 시각화에 많이 쓰이는 방법으로, 고차원 데이터를 차원축소하는 방법 중 하나이다. 
    실제 `Rossman Sales Prediction`경진대회에서 이 방법을 사용해 독일의 도시들을 embedding하여 시각화한 사례가 있다. 그림을 보면 알겠지만, 실제 독일 지도에 적힌 도시들의 위치와 t-SNE로 표시한 도시들의 위치가 매우 비슷한 것을 볼 수 있다. 이처럼 t-SNE는 시각화에 매우 강력한 툴이 될 수 있다.
+
+---
+
+---
+
+### 
+
+# day33_CNN Review
+
+x data = (tf.float32, [None,28,28,1])
+
+y data = (tf.float32, [None,10])
+
+keep_prob = (tf.float32) 
+
+
+
+개요 : CNN 
+
+conv2d[컨볼루션 계층] - relu[렐루 계층] - maxpooling [풀링]
+
+첫 번째 계층의 weight 부여 
+
+```python
+w1 = tf.Variable(tf.random_normal([3,3,1,32]))
+# (3,3) [filter, mask, kernal] 계층 : 1 흑백, 32개
+
+L1 = tf.nn.conv2d(x, w1, strides=[1,1,1,1], padding = 'SAME')
+# stride : sliding, 1칸, 1줄
+# padding : 외곽 한칸씩 증식
+
+L1 = tf.nn.relu(L1)
+L1 = tf.nn.max_pool(L1, ksize=[1,2,2,1], strides=[1,2,2,1], padding='SAME')
+# padding : (2,2)로 풀링하려 할때 마춰주기 위한 작업 
+
+# k(ernal) size=[1,2,2,1]
+# (2,2) 짜리를 다음것에 대해서 max pooling 하면서 지나가겠다
+# ksize 커질수록 .... 정확도 떨어져 
+
+
+
+
+
+
+
+
+
+
+```
+
+- agent = model 
+- 
+
