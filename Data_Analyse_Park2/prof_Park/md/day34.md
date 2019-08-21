@@ -125,9 +125,9 @@ start - goal [최단거리]
 
 
 
-feedback  : action 이 좋은 행동인지 아닌지 판단할수 있는근거
+feedback  : action 이 좋은 행동인지 아닌지 판단할수 있는근										
 
-=> reward
+=> reward : 수
 
 reward 를 설정해보자 
 
