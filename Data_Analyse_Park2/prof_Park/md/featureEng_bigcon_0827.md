@@ -133,4 +133,3 @@ num_opponent 전투 상대 캐릭터 수
 pledge_cnt <=> num_opponent : 0.85
 
 etc_cnt <=> num_opponet : 0.45
-
