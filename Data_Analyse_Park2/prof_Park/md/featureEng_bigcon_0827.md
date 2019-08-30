@@ -12,19 +12,21 @@ day 날짜
 acc_id 유저 아이디
 char_id 캐릭터 아이디
 server 캐릭터 서버
-playtime 일일 플레이시간
-npc_kill npc를 죽인 횟수
+**playtime 일일 플레이시간**
+**npc_kill npc를 죽인 횟수**
 solo_exp 솔로 사냥 획득 경험치
 party_exp 파티 사냥 획득 경험치
-quest_exp 퀘스트 획득 경험치
-boss_monster 보스 몬스터 타격 여부 (0=미타격 ,1= 타격)
-death 캐릭터 사망 횟수
+**quest_exp 퀘스트 획득 경험치 ** 
+boss_monster 보스 몬스터 타격 여부 (0=미타격 ,1= 타격) **총 타격 횟수** 
+**death 캐릭터 사망 횟수**
 revive 부활 횟수
 exp_recovery 경험치 복구 횟수(성당)
-fishing 일일 낚시 시간
+**fishing 일일 낚시 시간**
 private_shop 일일 개인상점 운영 시간
-game_money_change 일일 아데나 변동량
-enchant_count 7레벨 이상 아이템 인첸트 시도 횟수
+**game_money_change 일일 아데나 변동량**
+**enchant_count 7레벨 이상 아이템 인첸트 시도 횟수**
+
+
 
 **결제 (train_payment.csv, test1_payment.csv, test2_payment.csv)**
 ** 유저 결제 금액 일일 집계 제공 변수 설명**
@@ -50,15 +52,19 @@ source_acc_id 주는/판매 유저 아이디
 
 source_char_id 주는/판매 캐릭터 아이디 
 
-target_acc_id 받는/구매 유저 아이디 
+**target_acc_id 받는/구매 유저 아이디** 
 
 target_char_id 받는/구매 캐릭터 아이디 
 
 item_type 아이템 종류 
 
 weapon (무기), armor (방어구), accessory(액세서리), adena (아데나), spell (스킬북), enchant_scroll (강화주문서), etc (기타)
+
 item_amount 거래 아이템 수량
-item_price 거래 가격 교환창 거래 (Type=1)일 경우 NA
+
+item_price 거래 가격 교환창 거래
+
+ (Type=1)일 경우 NA
 
 
 
@@ -73,8 +79,11 @@ pledge_id 혈맹 아이디
 play_char_cnt 접속 혈맹 캐릭터 수
 combat_char_cnt 전투 참여 혈맹 캐릭터 수
 pledge_combat_cnt 혈맹 전투 횟수의 합
-random_attacker_cnt 무작위공격(막피)을 행한 전투 횟수의 합
-random_defender_cnt 무작위공격(막피)으로 피해받은 전투 횟수의 합
+
+**random_attacker_cnt 무작위공격(막피)을 행한 전투 횟수의 합**
+
+**random_defender_cnt 무작위공격(막피)으로 피해받은 전투 횟수의 합**
+
 same_pledge_cnt 동일 혈맹 전투 횟수의 합
 temp_cnt 단발성 전투 횟수의 합
 etc_cnt 기타 전투 횟수의 합
@@ -97,14 +106,30 @@ class 직업 범주 직업
 5용기사
 6환술사
 7전사
+
 level 레벨
-pledge_cnt 혈맹 전투 횟수
-random_attacker_cnt 무작위 공격을 행한 전투 횟수
-random_defender_cnt 무작위 공격자로부터 공격을 받은 전투 횟수
+
+**pledge_cnt 혈맹 전투 횟수**
+**random_attacker_cnt 무작위 공격을 행한 전투 횟수**
+**random_defender_cnt 무작위 공격자로부터 공격을 받은 전투 횟수**
 temp_cnt 단발성 전투 횟수
 same_pledge_cnt 동일 혈맹 전투 횟수
 etc_cnt 기타 전투 횟수
-num_opponent 전투 상대 캐릭터 수
+**num_opponent 전투 상대 캐릭터 수**
+
+
+
+- bigCON ref quiz
+
+**단발성 전투**는 전투한 캐릭터 수가 일정 기준 이하인 캐릭터 간의 전투를 의미합니다. 
+
+**기타 전투**는 제공된 전투 유형에 해당하지 않는 전투를 의미합니다.
+
+ 같은 캐릭터이지만 (acc_id와 char_id가 같지만)다수의 서버에서 기록이 있는 경우가 존재합니다.
+
+ 여러 서버의 캐릭터들이 모여서 즐기는 통합 서버 컨텐츠(e.g.월드 공성)는 일반 서버(데포르쥬,켄라우헬 등)가 아닌 특수 서버에서 진행되며,일반 서버 컨텐츠 활동은 일반 서버에, 통합 서버 컨텐츠 활동은 특수 서버에 기록이 됩니다. 따라서 동일한 캐릭터의 활동이 일반 서버와 특수 서버 모두에 기록될 수 있습니다.
+
+
 
 
 
@@ -135,12 +160,22 @@ num_opponent 전투 상대 캐릭터 수
 
 - 상관관계 분석 특이점
 
-pledge_cnt <=> num_opponent : 0.85
+**pledge_cnt** <=> **num_opponent** : 0.85
 
-etc_cnt <=> num_opponent : 0.45
+**etc_cnt** <=> **num_opponent** : 0.45
 
 
 
 class 1,2,3,4,5 각클래스별( 각account별 그날 전투 횟수 )
 
 다합쳐서 전투 횟수 
+
+서버명 상위
+
+△데포로쥬 △켄라우헬 △판도라 △데스나이트 △듀크데필 △안타라스 △파푸리온 △발라카스 △린드비오르 △사이하 등이다. 곧 추가될 서버는 ‘질리언’과 ‘군터’로 이름 붙었다.
+
+**PVP서버:** 말 그대로 PVP, 즉 대인전이 가능한 서버. 대부분의 서버가 PVP서버에 해당한다.
+
+**Non-PVP:** 캐릭터 간의 PVP가 허용되지 않는 서버
+
+**특화 서버:** 리니지 초기의 치열했던 전장을 재현하기 위해 레벨 제한 및 PvP, [카오틱 성향](https://lineage.plaync.com/powerbook/wiki/카오틱+성향)에 대한 페널티를 줄인 서버
