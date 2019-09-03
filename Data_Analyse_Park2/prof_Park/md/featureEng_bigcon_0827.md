@@ -17,7 +17,7 @@ server 캐릭터 서버
 solo_exp 솔로 사냥 획득 경험치
 party_exp 파티 사냥 획득 경험치
 **quest_exp 퀘스트 획득 경험치 ** 
-boss_monster 보스 몬스터 타격 여부 (0=미타격 ,1= 타격) **총 타격 횟수** 
+**boss_monster 보스 몬스터 타격 여부** (0=미타격 ,1= 타격) **총 타격 횟수** 
 **death 캐릭터 사망 횟수**
 revive 부활 횟수
 exp_recovery 경험치 복구 횟수(성당)
